@@ -39,18 +39,13 @@ jobs:
     - name: Run Tests
       run: go test -v ./...
 
-    - name: Set up SonarQube scanner
+    - name: Set up SonarCloud
       uses: SonarSource/sonarcloud-github-action@v2
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        sonar-token: ${{ secrets.SONAR_TOKEN }}
+        sonar-project-key: DonnerMarcel_CICD
+        sonar-organization: donnermarcel
 
-    - name: SonarQube Scan
-      run: |
-        sonar-scanner \
-          -Dsonar.projectKey=DonnerMarcel_CICD \
-          -Dsonar.organization=donnermarcel \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.sources=./
       
     - name: Upload artifact
       uses: actions/upload-artifact@v4
