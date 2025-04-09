@@ -39,10 +39,10 @@ jobs:
     - name: Run Tests
       run: go test -v ./...
 
-    - name: Set up SonarQube scanner
+    - name: Set up SonarQube
       uses: SonarSource/sonarcloud-github-action@v2
-      with:
-        sonar-token: ${{ secrets.SONAR_TOKEN }}
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     - name: SonarQube Scan
       run: |
