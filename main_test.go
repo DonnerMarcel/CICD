@@ -189,27 +189,27 @@ func TestDeleteAllProducts(t *testing.T) {
 	clearTable()
 	addProducts(5)
 
-    req, err := http.NewRequest("DELETE", "/products/delete_all", nil)
-    if err != nil {
-        t.Fatal(err)
-    }
+	req, err := http.NewRequest("DELETE", "/products/delete_all", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
 
-    rr := httptest.NewRecorder()
-    handler := http.HandlerFunc(a.deleteAllProducts)
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(a.deleteAllProducts)
 
-    handler.ServeHTTP(rr, req)
+	handler.ServeHTTP(rr, req)
 
-    if status := rr.Code; status != http.StatusOK {
-        t.Errorf("Expected status code %d, got %d", http.StatusOK, status)
-    }
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("Expected status code %d, got %d", http.StatusOK, status)
+	}
 
-    expected := `{"result":"success"}`
-    if rr.Body.String() != expected {
-        t.Errorf("Expected response body '%s', got '%s'", expected, rr.Body.String())
-    }
+	expected := `{"result":"success"}`
+	if rr.Body.String() != expected {
+		t.Errorf("Expected response body '%s', got '%s'", expected, rr.Body.String())
+	}
 }
 
-func TestGetProductsByPriceRange(t *testing.T) {
+func TestProductsByPriceRange(t *testing.T) {
 	clearTable()
 
 	products := []product{
@@ -230,8 +230,8 @@ func TestGetProductsByPriceRange(t *testing.T) {
 	maxPrice := 30.00
 
 	req, err := http.NewRequest("GET", "/products/price_range?min_price="+strconv.FormatFloat(minPrice, 'f', 2, 64)+
-	"&max_price="+
-	strconv.FormatFloat(maxPrice, 'f', 2, 64), nil)
+		"&max_price="+
+		strconv.FormatFloat(maxPrice, 'f', 2, 64), nil)
 	if err != nil {
 		t.Fatalf("Failed to create request: %v", err)
 	}
@@ -254,7 +254,7 @@ func TestGetProductsByPriceRange(t *testing.T) {
 		}
 	}
 
-	expectedExcluded := []string{"Product 1", "Product 4"} 
+	expectedExcluded := []string{"Product 1", "Product 4"}
 	for _, excludedName := range expectedExcluded {
 		for _, p := range returnedProducts {
 			if p.Name == excludedName {
