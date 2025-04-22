@@ -13,7 +13,7 @@ COPY main.go .
 RUN ls -l
 
 # Build the GO app as myapp binary and move it to /usr/
-RUN go mod init example.com/m && go build -o myapp . && mv myapp /usr/
+RUN go build -o myapp . && mv myapp /usr/
 
 #Expose port 8888
 EXPOSE 8888
