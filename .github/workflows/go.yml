@@ -69,6 +69,18 @@ jobs:
           DB_PASSWORD=password
           DB_NAME=postgres
 
+    - name: Run Trivy vulnerability scan on Docker image
+      uses: aquasecurity/trivy-action@0.30.0
+      with:
+        image-ref: donnermarcel/exercise-image:${{ github.sha }}
+        format: 'table'
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
+        exit-code: '1'
+        ignore-unfixed: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   sonarCloud:
       needs: build
       name: SonarCloud Code Analysis
