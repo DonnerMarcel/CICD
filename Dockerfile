@@ -17,7 +17,7 @@ ENV DB_NAME=postgres
 RUN ls -l
 
 # Build the GO app as myapp binary and move it to /usr/
-RUN go build -o myapp . && mv myapp /bin/
+RUN go build -o myapp . && mv demo-app /src/
 
 #Expose port 8888
 EXPOSE 8888
