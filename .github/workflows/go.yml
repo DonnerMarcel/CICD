@@ -76,6 +76,7 @@ jobs:
         severity: HIGH,CRITICAL
         fail_on_vulnerabilities: true
         trivy_version: latest
+        token: ${{ secrets.GITHUB_TOKEN }}
 
   sonarCloud:
       needs: build
