@@ -18,12 +18,6 @@ type App struct {
 	DB     *sql.DB
 }
 
-const (
-	DBUser     = "postgres"
-	DBPassword = "password"
-	DBName     = "postgres"
-)
-
 func (a *App) Initialize(user, password, dbname string) {
 	connectionString :=
 		fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", user, password, dbname)

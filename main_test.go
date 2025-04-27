@@ -22,6 +22,10 @@ const tableCreationQuery = `CREATE TABLE IF NOT EXISTS products
 )`
 
 func TestMain(m *testing.M) {
+	DBUser := os.Getenv("DB_USER")
+	DBPassword := os.Getenv("DB_PASSWORD")
+	DBName := os.Getenv("DB_NAME")
+
 	a.Initialize(DBUser, DBPassword, DBName)
 
 	ensureTableExists()
