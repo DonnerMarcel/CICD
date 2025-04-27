@@ -70,7 +70,7 @@ jobs:
           DB_NAME=postgres
     
     - name: Scan Dockerfile for vulnerabilities
-      uses: aquasecurity/trivy-action@v0.28.0
+      uses: aquasecurity/trivy-action@v0.30.0
       with:
         scan-type: 'dockerfile'
         scan-ref: './Dockerfile'
@@ -82,7 +82,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Scan code for vulnerabilities
-      uses: aquasecurity/trivy-action@v0.28.0
+      uses: aquasecurity/trivy-action@v0.30.0
       with:
         scan-type: 'fs'
         scan-ref: './'
@@ -94,7 +94,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@v0.28.0
+      uses: aquasecurity/trivy-action@v0.30.0
       with:
         image-ref: 'my-repo/my-image:${{ github.sha }}'
         format: 'table'
