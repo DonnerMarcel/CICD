@@ -6,6 +6,10 @@ LABEL maintainer="s2410455006@students.fh-hagenberg.at"
 # Set working directory: `/src`
 WORKDIR /src
 
+# Copy go.mod and go.sum first
+COPY go.mod .
+COPY go.sum .
+
 # Copy local file `main.go` to the working directory
 COPY main.go .
 
