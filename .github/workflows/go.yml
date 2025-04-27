@@ -72,8 +72,9 @@ jobs:
     - name: Run Trivy vulnerability scan on Docker image
       uses: aquasecurity/trivy-action@0.30.0
       with:
-        image: donnermarcel/exercise-image:${{ github.sha }}
+        image: docker.io/donnermarcel/exercise-image:${{ github.sha }}
         format: 'table'
+        vuln-type: 'os,library'
         severity: 'CRITICAL,HIGH'
         exit-code: '1'
         ignore-unfixed: true
