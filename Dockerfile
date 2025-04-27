@@ -23,4 +23,4 @@ RUN go build -o myapp . && mv myapp /bin/
 EXPOSE 8888
 
 # Run the service myapp when a container of this image is launched
-ENTRYPOINT ["/bin/myapp"]
+ENTRYPOINT ["/src/demo-app"]
