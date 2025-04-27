@@ -70,7 +70,7 @@ jobs:
           DB_NAME=postgres
 
     - name: Run Trivy vulnerability scan on Docker image
-      uses: aquasecurity/trivy-action@v0.9.2
+      uses: aquasecurity/trivy-action@0.30.0
       with:
         image: donnermarcel/exercise-image:${{ github.sha }}
         format: 'table'
