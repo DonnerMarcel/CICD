@@ -9,6 +9,10 @@ WORKDIR /src
 # Copy local files to the working directory
 COPY . .
 
+ENV DB_USER=postgres
+ENV DB_PASSWORD=password
+ENV DB_NAME=postgres
+
 # List items in the working directory (ls)
 RUN ls -l
 
