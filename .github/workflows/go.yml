@@ -74,8 +74,8 @@ jobs:
       with:
         image: ${{ secrets.DOCKER_USERNAME }}/exercise-image:${{ github.sha }}
         severity: HIGH,CRITICAL
+        vuln_type: os,library
         fail_on_vulnerabilities: true
-        trivy_version: latest
         token: ${{ secrets.GITHUB_TOKEN }}
 
   sonarCloud:
