@@ -60,6 +60,10 @@ jobs:
         context: .
         push: true
         tags: donnermarcel/exercise-image:${{ github.sha }}
+        build-args: |
+          DB_USER=postgres
+          DB_PASSWORD=password
+          DB_NAME=postgres
 
   sonarCloud:
       needs: build
