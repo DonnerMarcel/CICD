@@ -68,14 +68,40 @@ jobs:
           DB_USER=postgres
           DB_PASSWORD=password
           DB_NAME=postgres
-
-    - name: Trivy Action
-      uses: lazy-actions/gitrivy@v3
+    
+    - name: Scan Dockerfile for vulnerabilities
+      uses: aquasecurity/trivy-action@v0.28.0
       with:
-        image: ${{ secrets.DOCKER_USERNAME }}/exercise-image:${{ github.sha }}
-        severity: HIGH,CRITICAL
-        vuln_type: os,library
-        fail_on_vulnerabilities: true
+        scan-type: 'dockerfile'
+        scan-ref: './Dockerfile'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Scan code for vulnerabilities
+      uses: aquasecurity/trivy-action@v0.28.0
+      with:
+        scan-type: 'fs'
+        scan-ref: './'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@v0.28.0
+      with:
+        image-ref: 'my-repo/my-image:${{ github.sha }}'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        vuln-type: 'os,library'
+        severity: 'CRITICAL,HIGH'
         token: ${{ secrets.GITHUB_TOKEN }}
 
   sonarCloud:
