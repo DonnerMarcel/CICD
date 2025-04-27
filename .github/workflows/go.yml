@@ -69,22 +69,13 @@ jobs:
           DB_PASSWORD=password
           DB_NAME=postgres
 
-    - name: Run Trivy Vulnerability Scanner (Image Scan)
-      uses: aquasecurity/trivy-action@v0.3.0
+    - name: Trivy Action
+      uses: lazy-actions/gitrivy@v3
       with:
-        image: donnermarcel/exercise-image:${{ github.sha }}
-        format: 'table' 
-        exit-code: 1 
-        severity: 'CRITICAL,HIGH'
-        
-    - name: Run Trivy Vulnerability Scanner (Code and IaC)
-      uses: aquasecurity/trivy-action@v0.3.0
-      with:
-        scan-type: 'fs'
-        path: .
-        format: 'table'
-        exit-code: 1
-        severity: 'CRITICAL,HIGH'
+        image: ${{ secrets.DOCKER_USERNAME }}/exercise-image:${{ github.sha }}
+        severity: HIGH,CRITICAL
+        fail_on_vulnerabilities: true
+        trivy_version: latest
 
   sonarCloud:
       needs: build
