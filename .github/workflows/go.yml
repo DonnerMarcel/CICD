@@ -37,7 +37,11 @@ jobs:
       run: go build -v -o demo-app ./...
 
     - name: Run Tests
-      run: go test -v ./...
+      run: |
+        export DB_USER=postgres
+        export DB_PASSWORD=password
+        export DB_NAME=postgres
+        go test -v ./...
       
     - name: Upload artifact
       uses: actions/upload-artifact@v4
