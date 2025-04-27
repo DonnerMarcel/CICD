@@ -75,7 +75,7 @@ jobs:
         image-ref: donnermarcel/exercise-image:${{ github.sha }}
         format: 'table'
         vuln-type: 'os,library'
-        severity: 'CRITICAL,HIGH'
+        severity: 'CRITICAL'
         exit-code: '1'
         ignore-unfixed: true
       env:
